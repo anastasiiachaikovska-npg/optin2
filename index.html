@@ -45,25 +45,19 @@
         .custom-checkbox:checked::before {
             transform: scale(1);
         }
-        /* Стили для активной кнопки языка */
-        .lang-btn.active {
-            background-color: #ed1c24;
-            color: white;
-            border-color: #ed1c24;
-        }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen text-gray-900 py-10">
 
     <div class="w-full max-w-5xl p-6 sm:p-10 bg-white rounded-2xl shadow-sm relative">
         
-        <!-- Переключатель языков -->
-        <div class="absolute top-6 right-6 flex gap-2">
-            <button onclick="setLanguage('ru')" id="btn-ru" class="lang-btn active px-3 py-1 text-sm font-medium border border-gray-300 rounded-md transition-colors hover:border-gray-400">RU</button>
-            <button onclick="setLanguage('ro')" id="btn-ro" class="lang-btn px-3 py-1 text-sm font-medium border border-gray-300 rounded-md transition-colors hover:border-gray-400 text-gray-600">RO</button>
+        <!-- Переключатель языков (Новый дизайн) -->
+        <div class="absolute top-6 right-6 bg-gray-100 p-1 rounded-lg flex text-sm font-medium">
+            <button onclick="setLanguage('ru')" id="btn-ru" class="px-4 py-1.5 rounded-md bg-white text-gray-900 shadow-sm transition-all">RU</button>
+            <button onclick="setLanguage('ro')" id="btn-ro" class="px-4 py-1.5 rounded-md text-gray-500 hover:text-gray-900 transition-all">RO</button>
         </div>
 
-        <h1 id="t-title" class="text-4xl font-bold text-center mb-16">Регистрация</h1>
+        <h1 id="t-title" class="text-4xl font-bold text-center mb-16 mt-4">Регистрация</h1>
 
         <div class="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
             
@@ -91,21 +85,25 @@
                         </button>
                     </div>
 
-                    <div class="pt-4 pb-2">
-                        <p class="text-[13px] text-center mb-6 leading-relaxed">
+                    <div class="mt-6 space-y-6">
+                        <!-- Основные условия (Оферта и Условия) -->
+                        <p class="text-[12px] text-center text-gray-500 leading-relaxed px-2">
                             <span id="t-termsText1">Регистрируясь, вы соглашаетесь с условиями</span><br>
-                            <a href="#offer" id="t-offerLink" class="underline hover:text-red-600 transition-colors">Публичной оферты</a> <span id="t-termsText2">и</span> 
-                            <a href="#terms" id="t-termsLink" class="underline hover:text-red-600 transition-colors">Условиями предоставления<br>услуг Nova Poshta Shopping</a>
+                            <a href="#offer" id="t-offerLink" class="text-gray-800 underline hover:text-[#ed1c24] transition-colors">Договора присоединения о предоставлении услуг международной экспресс-доставки</a> <span id="t-termsText2">и</span> 
+                            <a href="#terms" id="t-termsLink" class="text-gray-800 underline hover:text-[#ed1c24] transition-colors">Условиями предоставления услуг Nova Poshta Shopping</a>
                         </p>
 
-                        <div class="flex items-start gap-3 mb-6 bg-gray-50 p-3 rounded-lg border border-gray-100">
-                            <input type="checkbox" id="privacy_marketing" class="custom-checkbox mt-0.5 flex-shrink-0">
-                            <label for="privacy_marketing" class="text-[13px] leading-tight text-gray-700 cursor-pointer select-none">
-                                <span id="t-marketingText">Я хочу получать уведомления об акциях и персональных скидках в соответствии с </span><a href="#privacy" id="t-privacyLink" class="underline font-medium hover:text-red-600 transition-colors text-black">Политикой приватности</a>.
-                            </label>
-                        </div>
+                        <!-- Чекбокс маркетинга + Политика приватности -->
+                        <label class="flex items-start gap-3 cursor-pointer group">
+                            <div class="relative flex items-start pt-0.5">
+                                <input type="checkbox" id="privacy_marketing" class="custom-checkbox flex-shrink-0 peer">
+                            </div>
+                            <span class="text-[13px] text-gray-600 leading-snug select-none group-hover:text-gray-800 transition-colors">
+                                <span id="t-marketingText">Я хочу получать уведомления об акциях и персональных скидках в соответствии с </span><a href="#privacy" id="t-privacyLink" class="text-gray-800 font-medium underline hover:text-[#ed1c24] transition-colors" onclick="event.stopPropagation()">Политикой приватности</a>.
+                            </span>
+                        </label>
 
-                        <button type="submit" id="t-submitBtn" class="w-full bg-[#ed1c24] hover:bg-[#d11a20] text-white font-medium py-3.5 rounded-full transition-colors text-[15px]">
+                        <button type="submit" id="t-submitBtn" class="w-full bg-[#ed1c24] hover:bg-[#d11a20] text-white font-medium py-3.5 rounded-full transition-all shadow-sm hover:shadow-md text-[15px]">
                             Зарегистрироваться
                         </button>
                     </div>
@@ -156,9 +154,9 @@
                 phone: "Номер телефона",
                 password: "Пароль",
                 termsText1: "Регистрируясь, вы соглашаетесь с условиями",
-                offerLink: "Публичной оферты",
+                offerLink: "Договора присоединения о предоставлении услуг международной экспресс-доставки",
                 termsText2: "и",
-                termsLink: "Условиями предоставления<br>услуг Nova Poshta Shopping",
+                termsLink: "Условиями предоставления услуг Nova Poshta Shopping",
                 marketingText: "Я хочу получать уведомления об акциях и персональных скидках в соответствии с ",
                 privacyLink: "Политикой приватности",
                 submitBtn: "Зарегистрироваться",
@@ -178,7 +176,7 @@
                 termsText1: "Prin înregistrare, sunteți de acord cu termenii",
                 offerLink: "Ofertei Publice",
                 termsText2: "și cu",
-                termsLink: "Termenii de furnizare<br>a serviciilor Nova Poshta Shopping",
+                termsLink: "Termenii de furnizare a serviciilor Nova Poshta Shopping",
                 marketingText: "Doresc să primesc notificări despre promoții și reduceri personale în conformitate cu ",
                 privacyLink: "Politica de privatețe",
                 submitBtn: "Creează cont",
@@ -191,14 +189,12 @@
         };
 
         function setLanguage(lang) {
-            // Обновляем активный класс на кнопках
-            document.getElementById('btn-ru').className = lang === 'ru' 
-                ? 'lang-btn active px-3 py-1 text-sm font-medium border border-gray-300 rounded-md transition-colors hover:border-gray-400' 
-                : 'lang-btn px-3 py-1 text-sm font-medium border border-gray-300 rounded-md transition-colors hover:border-gray-400 text-gray-600';
+            // Новые стили для кнопок-тумблеров
+            const activeClass = 'px-4 py-1.5 rounded-md bg-white text-gray-900 shadow-sm transition-all';
+            const inactiveClass = 'px-4 py-1.5 rounded-md text-gray-500 hover:text-gray-900 transition-all';
             
-            document.getElementById('btn-ro').className = lang === 'ro' 
-                ? 'lang-btn active px-3 py-1 text-sm font-medium border border-gray-300 rounded-md transition-colors hover:border-gray-400' 
-                : 'lang-btn px-3 py-1 text-sm font-medium border border-gray-300 rounded-md transition-colors hover:border-gray-400 text-gray-600';
+            document.getElementById('btn-ru').className = lang === 'ru' ? activeClass : inactiveClass;
+            document.getElementById('btn-ro').className = lang === 'ro' ? activeClass : inactiveClass;
 
             // Обновляем текстовые узлы
             document.getElementById('t-title').innerText = translations[lang].title;
