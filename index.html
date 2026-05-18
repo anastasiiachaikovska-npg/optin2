@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация - Nova Poshta Shopping</title>
+    <title>Marketing Consent Flow - Nova Poshta Shopping</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f9fafb; /* Легкий фон, чтобы белая форма выделялась */
+            background-color: #f9fafb;
         }
         .custom-checkbox {
             appearance: none;
@@ -45,108 +45,264 @@
         .custom-checkbox:checked::before {
             transform: scale(1);
         }
+        
+        /* Animation for page transitions */
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen text-gray-900 py-10">
+<body class="flex flex-col min-h-screen text-gray-900 pb-10">
 
-    <div class="w-full max-w-5xl p-6 sm:p-10 bg-white rounded-2xl shadow-sm relative">
-        
-        <!-- Переключатель языков (Новый дизайн) -->
-        <div class="absolute top-6 right-6 bg-gray-100 p-1 rounded-lg flex text-sm font-medium">
-            <button onclick="setLanguage('ru')" id="btn-ru" class="px-4 py-1.5 rounded-md bg-white text-gray-900 shadow-sm transition-all">RU</button>
-            <button onclick="setLanguage('ro')" id="btn-ro" class="px-4 py-1.5 rounded-md text-gray-500 hover:text-gray-900 transition-all">RO</button>
-        </div>
-
-        <h1 id="t-title" class="text-4xl font-bold text-center mb-16 mt-4">Регистрация</h1>
-
-        <div class="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
-            
-            <div class="hidden md:block absolute left-1/2 top-0 bottom-10 w-[1px] bg-gray-200 transform -translate-x-1/2"></div>
-
-            <!-- ЛЕВАЯ КОЛОНКА -->
-            <div class="flex flex-col">
-                <p id="t-subtitle" class="mb-6 text-[15px]">Заполните поля на румынском языке (латиницей)</p>
-
-                <form class="space-y-5" onsubmit="event.preventDefault();">
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <input type="text" id="p-lastName" placeholder="Фамилия" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-red-500 transition-colors text-[15px] placeholder-gray-400">
-                        <input type="text" id="p-firstName" placeholder="Имя" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-red-500 transition-colors text-[15px] placeholder-gray-400">
-                    </div>
-
-                    <input type="tel" id="p-phone" placeholder="Номер телефона" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-red-500 transition-colors text-[15px] placeholder-gray-400">
-
-                    <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-red-500 transition-colors text-[15px] placeholder-gray-400">
-
-                    <div class="relative">
-                        <input type="password" id="p-password" placeholder="Пароль" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-red-500 transition-colors text-[15px] placeholder-gray-400">
-                        <button type="button" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                            <i class="fa-regular fa-eye-slash"></i>
-                        </button>
-                    </div>
-
-                    <div class="mt-6 space-y-6">
-                        <!-- Основные условия (Оферта и Условия) -->
-                        <p class="text-[12px] text-center text-gray-500 leading-relaxed px-2">
-                            <span id="t-termsText1">Регистрируясь, вы соглашаетесь с условиями</span><br>
-                            <a href="#offer" id="t-offerLink" class="text-gray-800 underline hover:text-[#ed1c24] transition-colors">Договора присоединения о предоставлении услуг международной экспресс-доставки</a> <span id="t-termsText2">и</span> 
-                            <a href="#terms" id="t-termsLink" class="text-gray-800 underline hover:text-[#ed1c24] transition-colors">Условиями предоставления услуг Nova Poshta Shopping</a>
-                        </p>
-
-                        <!-- Чекбокс маркетинга + Политика приватности -->
-                        <label class="flex items-start gap-3 cursor-pointer group">
-                            <div class="relative flex items-start pt-0.5">
-                                <input type="checkbox" id="privacy_marketing" class="custom-checkbox flex-shrink-0 peer">
-                            </div>
-                            <span class="text-[13px] text-gray-600 leading-snug select-none group-hover:text-gray-800 transition-colors">
-                                <span id="t-marketingText">Я хочу получать уведомления об акциях и персональных скидках в соответствии с </span><a href="#privacy" id="t-privacyLink" class="text-gray-800 font-medium underline hover:text-[#ed1c24] transition-colors" onclick="event.stopPropagation()">Политикой приватности</a>.
-                            </span>
-                        </label>
-
-                        <button type="submit" id="t-submitBtn" class="w-full bg-[#ed1c24] hover:bg-[#d11a20] text-white font-medium py-3.5 rounded-full transition-all shadow-sm hover:shadow-md text-[15px]">
-                            Зарегистрироваться
-                        </button>
-                    </div>
-                </form>
+    <!-- ДЕМО НАВІГАЦІЯ (Тільки для перегляду прототипу) -->
+    <div class="bg-gray-800 text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto flex flex-wrap gap-4 items-center justify-between">
+            <div class="flex gap-2">
+                <span class="font-semibold text-gray-300 mr-2 flex items-center">Екрани:</span>
+                <button onclick="showPage('page-register')" id="nav-register" class="px-3 py-1.5 hover:bg-gray-700 rounded text-sm font-medium transition-colors">1. Реєстрація</button>
+                <button onclick="showPage('page-profile')" id="nav-profile" class="px-3 py-1.5 bg-red-600 rounded text-sm font-medium transition-colors">2. Профіль (Особисті дані)</button>
+                <button onclick="showPage('page-success')" id="nav-success" class="px-3 py-1.5 hover:bg-gray-700 rounded text-sm font-medium transition-colors">3. Сторінка з email</button>
             </div>
-
-            <!-- ПРАВАЯ КОЛОНКА -->
-            <div class="flex flex-col h-full">
-                <div class="pt-8 md:pt-16">
-                    <p id="t-socialTitle" class="text-center mb-8 text-[15px]">Или войдите через соцсети</p>
-
-                    <div class="space-y-4 px-0 md:px-4">
-                        <button class="w-full bg-[#3b5998] hover:bg-[#324b80] text-white font-medium py-3.5 rounded-2xl flex items-center justify-center gap-3 transition-colors text-[15px]">
-                            <i class="fa-brands fa-facebook-f text-lg"></i>
-                            <span id="t-fbBtn">Зарегистрироваться через Facebook</span>
-                        </button>
-
-                        <button class="w-full bg-[#f1f1f1] hover:bg-[#e2e2e2] text-gray-800 font-medium py-3.5 rounded-2xl flex items-center justify-center gap-3 transition-colors text-[15px]">
-                            <svg class="w-5 h-5" viewBox="0 0 24 24">
-                                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
-                                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                            </svg>
-                            <span id="t-googleBtn">Зарегистрироваться через Google</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="mt-auto pt-20 md:pt-0 text-center pb-2">
-                    <p class="text-[15px]">
-                        <span id="t-alreadyReg">Уже зарегистрированы? </span><a href="#login" id="t-loginLink" class="font-semibold hover:text-red-600 transition-colors">Войти</a>
-                    </p>
-                </div>
+            <!-- Переключатель языков -->
+            <div class="bg-gray-700 p-1 rounded-lg flex text-sm font-medium">
+                <button onclick="setLanguage('ru')" id="btn-ru" class="px-4 py-1 rounded-md bg-white text-gray-900 shadow-sm transition-all">RU</button>
+                <button onclick="setLanguage('ro')" id="btn-ro" class="px-4 py-1 rounded-md text-gray-300 hover:text-white transition-all">RO</button>
             </div>
-
         </div>
     </div>
 
-    <!-- Скрипт для переключения языков -->
+    <!-- MAIN CONTAINER -->
+    <div class="flex-grow flex items-center justify-center w-full pt-10 px-4">
+        
+        <!-- ========================================== -->
+        <!-- СТОРИНКА 1: РЕГИСТРАЦИЯ -->
+        <!-- ========================================== -->
+        <div id="page-register" class="page-view hidden w-full max-w-5xl p-6 sm:p-10 bg-white rounded-2xl shadow-sm relative fade-in">
+            <h1 id="t-title" class="text-4xl font-bold text-center mb-16 mt-4">Регистрация</h1>
+
+            <div class="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
+                <div class="hidden md:block absolute left-1/2 top-0 bottom-10 w-[1px] bg-gray-200 transform -translate-x-1/2"></div>
+
+                <!-- ЛЕВАЯ КОЛОНКА -->
+                <div class="flex flex-col">
+                    <p id="t-subtitle" class="mb-6 text-[15px]">Заполните поля на румынском языке (латиницей)</p>
+
+                    <form class="space-y-5" onsubmit="event.preventDefault();">
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="text" id="p-lastName" placeholder="Фамилия" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-red-500 transition-colors text-[15px] placeholder-gray-400">
+                            <input type="text" id="p-firstName" placeholder="Имя" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-red-500 transition-colors text-[15px] placeholder-gray-400">
+                        </div>
+                        <input type="tel" id="p-phone" placeholder="Номер телефона" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-red-500 transition-colors text-[15px] placeholder-gray-400">
+                        <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-red-500 transition-colors text-[15px] placeholder-gray-400">
+                        <div class="relative">
+                            <input type="password" id="p-password" placeholder="Пароль" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-red-500 transition-colors text-[15px] placeholder-gray-400">
+                            <button type="button" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                                <i class="fa-regular fa-eye-slash"></i>
+                            </button>
+                        </div>
+
+                        <div class="mt-6 space-y-6">
+                            <p class="text-[12px] text-center text-gray-500 leading-relaxed px-2">
+                                <span id="t-termsText1">Регистрируясь, вы соглашаетесь с условиями</span><br>
+                                <a href="#offer" id="t-offerLink" class="text-gray-800 underline hover:text-[#ed1c24] transition-colors">Договора присоединения о предоставлении услуг международной экспресс-доставки</a> <span id="t-termsText2">и</span> 
+                                <a href="#terms" id="t-termsLink" class="text-gray-800 underline hover:text-[#ed1c24] transition-colors">Условиями предоставления услуг Nova Poshta Shopping</a>
+                            </p>
+
+                            <!-- Чекбокс маркетинга -->
+                            <label class="flex items-start gap-3 cursor-pointer group bg-gray-50 p-4 rounded-xl border border-gray-100 hover:border-gray-200 transition-all">
+                                <div class="relative flex items-start pt-0.5">
+                                    <input type="checkbox" class="custom-checkbox flex-shrink-0 peer">
+                                </div>
+                                <span class="text-[13px] text-gray-600 leading-snug select-none group-hover:text-gray-800 transition-colors">
+                                    <span id="t-marketingText1">Я хочу получать уведомления об акциях и персональных скидках в соответствии с </span><a href="#privacy" id="t-privacyLink1" class="text-gray-800 font-medium underline hover:text-[#ed1c24] transition-colors" onclick="event.stopPropagation()">Политикой приватности</a>.
+                                </span>
+                            </label>
+
+                            <button type="submit" id="t-submitBtn" class="w-full bg-[#ed1c24] hover:bg-[#d11a20] text-white font-medium py-3.5 rounded-full transition-all shadow-sm hover:shadow-md text-[15px]">
+                                Зарегистрироваться
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- ПРАВАЯ КОЛОНКА -->
+                <div class="flex flex-col h-full">
+                    <div class="pt-8 md:pt-16">
+                        <p id="t-socialTitle" class="text-center mb-8 text-[15px]">Или войдите через соцсети</p>
+                        <div class="space-y-4 px-0 md:px-4">
+                            <button class="w-full bg-[#3b5998] hover:bg-[#324b80] text-white font-medium py-3.5 rounded-2xl flex items-center justify-center gap-3 transition-colors text-[15px]">
+                                <i class="fa-brands fa-facebook-f text-lg"></i>
+                                <span id="t-fbBtn">Зарегистрироваться через Facebook</span>
+                            </button>
+                            <button class="w-full bg-[#f1f1f1] hover:bg-[#e2e2e2] text-gray-800 font-medium py-3.5 rounded-2xl flex items-center justify-center gap-3 transition-colors text-[15px]">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24">
+                                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                                </svg>
+                                <span id="t-googleBtn">Зарегистрироваться через Google</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-20 md:pt-0 text-center pb-2">
+                        <p class="text-[15px]">
+                            <span id="t-alreadyReg">Уже зарегистрированы? </span><a href="#login" id="t-loginLink" class="font-semibold hover:text-red-600 transition-colors">Войти</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- СТОРИНКА 2: ПРОФИЛЬ (Особисті дані) ОНОВЛЕНО -->
+        <!-- ========================================== -->
+        <div id="page-profile" class="page-view w-full max-w-[1000px] p-6 sm:p-12 bg-white rounded-2xl shadow-sm relative fade-in">
+            <h1 id="t-profTitle" class="text-[44px] font-bold text-gray-900 mb-10">Персональные данные</h1>
+
+            <!-- Tabs -->
+            <div class="flex gap-6 border-b border-gray-200 mb-10">
+                <button id="t-profTab1" class="pb-3 text-[#ed1c24] font-medium border-b-[3px] border-[#ed1c24] text-[15px]">Профиль</button>
+                <button id="t-profTab2" class="pb-3 text-gray-800 hover:text-[#ed1c24] font-medium text-[15px] transition-colors">Мои адреса</button>
+            </div>
+
+            <form class="space-y-6" onsubmit="event.preventDefault();">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-7">
+                    <!-- Фамилия -->
+                    <div class="relative">
+                        <label id="t-profLastNameLbl" class="absolute -top-2.5 left-4 bg-white px-1.5 text-[12px] text-gray-500 z-10">Фамилия</label>
+                        <input type="text" value="Ustyan" class="w-full px-4 py-3.5 bg-transparent border border-gray-900 rounded-[10px] text-[15px] text-gray-900 focus:outline-none focus:border-red-600 transition-colors relative z-0">
+                    </div>
+                    
+                    <!-- Имя -->
+                    <div class="relative">
+                        <label id="t-profFirstNameLbl" class="absolute -top-2.5 left-4 bg-white px-1.5 text-[12px] text-gray-500 z-10">Имя</label>
+                        <input type="text" value="Arevik" class="w-full px-4 py-3.5 bg-transparent border border-gray-900 rounded-[10px] text-[15px] text-gray-900 focus:outline-none focus:border-red-600 transition-colors relative z-0">
+                    </div>
+
+                    <!-- Телефон -->
+                    <div class="relative mt-1">
+                        <label id="t-profPhoneLbl" class="absolute -top-2.5 left-4 bg-white px-1.5 text-[12px] text-gray-500 z-10">Номер телефона</label>
+                        <input type="tel" value="+373 620 46 078" class="w-full px-4 py-3.5 bg-transparent border border-gray-900 rounded-[10px] text-[15px] text-gray-900 focus:outline-none focus:border-red-600 transition-colors relative z-0">
+                    </div>
+
+                    <!-- Пол -->
+                    <div>
+                        <label class="block text-[12px] text-gray-400 mb-[2px] ml-1" id="t-profGenderLbl">Пол</label>
+                        <div class="flex border border-gray-900 rounded-[10px] overflow-hidden h-[54px]">
+                            <button type="button" class="flex-1 bg-black text-white text-[15px]" id="t-profGenderM">Мужской</button>
+                            <button type="button" class="flex-1 bg-white text-gray-900 text-[15px] border-l border-gray-900 hover:bg-gray-50 transition-colors" id="t-profGenderF">Женский</button>
+                        </div>
+                    </div>
+
+                    <!-- Email (Disabled) -->
+                    <div class="relative mt-1">
+                        <label class="absolute -top-2.5 left-4 bg-[#f3f4f6] px-1.5 text-[12px] text-gray-500 z-10">Email</label>
+                        <input type="email" value="ustian.a@novaposhta.ua" disabled class="w-full px-4 py-3.5 bg-[#f3f4f6] border border-gray-300 rounded-[10px] text-[15px] text-gray-500 focus:outline-none relative z-0">
+                    </div>
+
+                    <!-- Дата рождения -->
+                    <div>
+                        <label class="block text-[12px] text-gray-400 mb-[2px] ml-1" id="t-profDobLbl">Дата рождения</label>
+                        <div class="flex border border-gray-900 rounded-[10px] overflow-hidden h-[54px]">
+                            <input type="text" placeholder="День" value="" class="w-[25%] px-4 text-[15px] focus:outline-none border-r border-gray-900 bg-transparent text-center" id="t-profDobDay">
+                            <div class="w-[50%] relative border-r border-gray-900 bg-transparent">
+                                <select class="w-full h-full appearance-none bg-transparent px-5 focus:outline-none text-[15px] cursor-pointer">
+                                    <option>января</option>
+                                    <option>февраля</option>
+                                    <option>марта</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 transform -translate-y-1/2 text-[12px] text-gray-500 pointer-events-none"></i>
+                            </div>
+                            <input type="text" placeholder="Год" value="" class="w-[25%] px-4 text-[15px] focus:outline-none bg-transparent text-center" id="t-profDobYear">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- БЛОК НАЛАШТУВАНЬ ПІДПИСКИ В ПРОФІЛІ -->
+                <div class="mt-12 pt-8 border-t border-gray-100">
+                    <h3 id="t-profSettingsTitle" class="text-xl font-bold text-gray-900 mb-5">Настройки уведомлений</h3>
+                    
+                    <label class="flex items-start gap-4 cursor-pointer group bg-gray-50 p-5 rounded-2xl border border-gray-200 hover:border-red-300 transition-all max-w-2xl">
+                        <div class="relative flex items-start pt-0.5">
+                            <input type="checkbox" checked id="profile_marketing" class="custom-checkbox flex-shrink-0 peer">
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-[15px] font-medium text-gray-900 mb-1" id="t-marketingTitle">Акции и выгодные предложения</span>
+                            <span class="text-[14px] text-gray-500 leading-snug">
+                                <span id="t-marketingText2">Я хочу получать уведомления об акциях и персональных скидках в соответствии с </span><a href="#privacy" id="t-privacyLink2" class="text-gray-800 font-medium underline hover:text-[#ed1c24] transition-colors" onclick="event.stopPropagation()">Политикой приватности</a>.
+                            </span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- КНОПКИ ЗБЕРЕЖЕННЯ -->
+                <div class="pt-8 flex flex-wrap items-center gap-6 md:gap-10">
+                    <button type="submit" id="t-profSaveBtn" class="bg-[#ed1c24] hover:bg-[#d11a20] text-white py-3.5 px-10 rounded-full transition-all text-[15px]">
+                        Сохранить
+                    </button>
+                    <button type="button" id="t-profChangeEmailBtn" class="text-gray-900 hover:text-red-600 transition-colors text-[15px]">
+                        Изменить email
+                    </button>
+                    <button type="button" id="t-profChangePwdBtn" class="text-gray-900 hover:text-red-600 transition-colors text-[15px]">
+                        Сменить пароль
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- СТОРИНКА 3: РЕДИРЕКТ З EMAIL (Success Page) -->
+        <!-- ========================================== -->
+        <div id="page-success" class="page-view hidden w-full max-w-lg p-8 sm:p-12 bg-white rounded-3xl shadow-sm text-center relative fade-in">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-check text-4xl text-green-500"></i>
+            </div>
+            
+            <h1 id="t-successTitle" class="text-3xl font-bold text-gray-900 mb-4">Подписка оформлена!</h1>
+            
+            <p id="t-successDesc" class="text-gray-500 text-[15px] leading-relaxed mb-10">
+                Спасибо! Вы успешно подписались на наши маркетинговые рассылки. Теперь вы будете первыми узнавать о скидках и специальных предложениях. Управлять подпиской можно в личном кабинете.
+            </p>
+
+            <button onclick="showPage('page-profile')" id="t-successBtn" class="w-full bg-[#ed1c24] hover:bg-[#d11a20] text-white font-medium py-3.5 rounded-full transition-all shadow-sm hover:shadow-md text-[15px]">
+                Перейти в личный кабинет
+            </button>
+            <button onclick="showPage('page-register')" id="t-successHomeBtn" class="w-full mt-4 bg-transparent text-gray-500 hover:text-gray-800 font-medium py-3 transition-colors text-[15px]">
+                На главную
+            </button>
+        </div>
+
+    </div>
+
+    <!-- СКРИПТИ (Логіка перемикання сторінок + Переклад) -->
     <script>
+        // 1. Логіка перемикання демо-сторінок (За замовчуванням показуємо Профіль для цього апдейту)
+        function showPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
+            document.getElementById(pageId).classList.remove('hidden');
+
+            const navIds = ['nav-register', 'nav-profile', 'nav-success'];
+            navIds.forEach(id => {
+                const btn = document.getElementById(id);
+                if (id === 'nav-' + pageId.replace('page-', '')) {
+                    btn.classList.replace('hover:bg-gray-700', 'bg-red-600');
+                    btn.classList.add('bg-red-600');
+                } else {
+                    btn.classList.replace('bg-red-600', 'hover:bg-gray-700');
+                    btn.classList.remove('bg-red-600');
+                }
+            });
+        }
+
+        // 2. Логіка перекладів
         const translations = {
             ru: {
+                // Page 1: Реєстрація
                 title: "Регистрация",
                 subtitle: "Заполните поля на румынском языке (латиницей)",
                 lastName: "Фамилия",
@@ -164,9 +320,35 @@
                 fbBtn: "Зарегистрироваться через Facebook",
                 googleBtn: "Зарегистрироваться через Google",
                 alreadyReg: "Уже зарегистрированы? ",
-                loginLink: "Войти"
+                loginLink: "Войти",
+
+                // Page 2: Профіль
+                profTitle: "Персональные данные",
+                profTab1: "Профиль",
+                profTab2: "Мои адреса",
+                profLastNameLbl: "Фамилия",
+                profFirstNameLbl: "Имя",
+                profPhoneLbl: "Номер телефона",
+                profGenderLbl: "Пол",
+                profGenderM: "Мужской",
+                profGenderF: "Женский",
+                profDobLbl: "Дата рождения",
+                profDobDay: "День",
+                profDobYear: "Год",
+                marketingTitle: "Акции и выгодные предложения",
+                profSettingsTitle: "Настройки уведомлений",
+                profSaveBtn: "Сохранить",
+                profChangeEmailBtn: "Изменить email",
+                profChangePwdBtn: "Сменить пароль",
+
+                // Page 3: Success Page
+                successTitle: "Подписка оформлена!",
+                successDesc: "Спасибо! Вы успешно подписались на акции и выгодные предложения. Теперь вы будете первыми узнавать о скидках. Управлять подпиской можно в личном кабинете.",
+                successBtn: "Перейти в личный кабинет",
+                successHomeBtn: "На главную"
             },
             ro: {
+                // Page 1: Реєстрація
                 title: "Înregistrare",
                 subtitle: "Completați câmpurile în limba română (cu caractere latine)",
                 lastName: "Numele de familie",
@@ -178,33 +360,63 @@
                 termsText2: "și cu",
                 termsLink: "Termenii de furnizare a serviciilor Nova Poshta Shopping",
                 marketingText: "Doresc să primesc notificări despre promoții și reduceri personale în conformitate cu ",
-                privacyLink: "Politica de privatețe",
+                privacyLink: "Politica de confidențialitate",
                 submitBtn: "Creează cont",
                 socialTitle: "Sau continuă cu rețelele sociale",
                 fbBtn: "Înregistrare cu Facebook",
                 googleBtn: "Înregistrare cu Google",
                 alreadyReg: "Ai deja cont? ",
-                loginLink: "Intră"
+                loginLink: "Intră",
+
+                // Page 2: Профіль
+                profTitle: "Date personale",
+                profTab1: "Profil",
+                profTab2: "Adresele mele",
+                profLastNameLbl: "Numele de familie",
+                profFirstNameLbl: "Prenumele",
+                profPhoneLbl: "Numărul de telefon",
+                profGenderLbl: "Sexul",
+                profGenderM: "Masculin",
+                profGenderF: "Feminin",
+                profDobLbl: "Data nașterii",
+                profDobDay: "Ziua",
+                profDobYear: "Anul",
+                marketingTitle: "Promoții și oferte speciale",
+                profSettingsTitle: "Setări notificări",
+                profSaveBtn: "Salvează",
+                profChangeEmailBtn: "Schimbați email-ul",
+                profChangePwdBtn: "Schimbați parola",
+
+                // Page 3: Success Page
+                successTitle: "Abonare reușită!",
+                successDesc: "Mulțumim! V-ați abonat cu succes la promoții și oferte speciale. Acum veți fi primii care află despre reduceri. Puteți gestiona abonamentul în contul dumneavoastră.",
+                successBtn: "Mergi la contul meu",
+                successHomeBtn: "Acasă"
             }
         };
 
         function setLanguage(lang) {
-            // Новые стили для кнопок-тумблеров
-            const activeClass = 'px-4 py-1.5 rounded-md bg-white text-gray-900 shadow-sm transition-all';
-            const inactiveClass = 'px-4 py-1.5 rounded-md text-gray-500 hover:text-gray-900 transition-all';
+            // Стилі для кнопок-тумблерів
+            const activeClass = 'px-4 py-1 rounded-md bg-white text-gray-900 shadow-sm transition-all';
+            const inactiveClass = 'px-4 py-1 rounded-md text-gray-300 hover:text-white transition-all';
             
             document.getElementById('btn-ru').className = lang === 'ru' ? activeClass : inactiveClass;
             document.getElementById('btn-ro').className = lang === 'ro' ? activeClass : inactiveClass;
 
-            // Обновляем текстовые узлы
+            // Обновляем текстовые узлы (Регистрация)
             document.getElementById('t-title').innerText = translations[lang].title;
             document.getElementById('t-subtitle').innerText = translations[lang].subtitle;
             document.getElementById('t-termsText1').innerText = translations[lang].termsText1;
             document.getElementById('t-offerLink').innerText = translations[lang].offerLink;
             document.getElementById('t-termsText2').innerText = translations[lang].termsText2;
-            document.getElementById('t-termsLink').innerHTML = translations[lang].termsLink;
-            document.getElementById('t-marketingText').innerText = translations[lang].marketingText;
-            document.getElementById('t-privacyLink').innerText = translations[lang].privacyLink;
+            document.getElementById('t-termsLink').innerText = translations[lang].termsLink;
+            
+            // Текст чекбоксу дублюється в 2 місцях (Реєстрація та Профіль)
+            document.getElementById('t-marketingText1').innerText = translations[lang].marketingText;
+            document.getElementById('t-marketingText2').innerText = translations[lang].marketingText;
+            document.getElementById('t-privacyLink1').innerText = translations[lang].privacyLink;
+            document.getElementById('t-privacyLink2').innerText = translations[lang].privacyLink;
+
             document.getElementById('t-submitBtn').innerText = translations[lang].submitBtn;
             document.getElementById('t-socialTitle').innerText = translations[lang].socialTitle;
             document.getElementById('t-fbBtn').innerText = translations[lang].fbBtn;
@@ -212,12 +424,41 @@
             document.getElementById('t-alreadyReg').innerText = translations[lang].alreadyReg;
             document.getElementById('t-loginLink').innerText = translations[lang].loginLink;
 
-            // Обновляем плейсхолдеры в инпутах
+            // Обновляем плейсхолдеры
             document.getElementById('p-lastName').placeholder = translations[lang].lastName;
             document.getElementById('p-firstName').placeholder = translations[lang].firstName;
             document.getElementById('p-phone').placeholder = translations[lang].phone;
             document.getElementById('p-password').placeholder = translations[lang].password;
+
+            // Обновляем текстовые узлы (Профіль)
+            document.getElementById('t-profTitle').innerText = translations[lang].profTitle;
+            document.getElementById('t-profTab1').innerText = translations[lang].profTab1;
+            document.getElementById('t-profTab2').innerText = translations[lang].profTab2;
+            document.getElementById('t-profLastNameLbl').innerText = translations[lang].profLastNameLbl;
+            document.getElementById('t-profFirstNameLbl').innerText = translations[lang].profFirstNameLbl;
+            document.getElementById('t-profPhoneLbl').innerText = translations[lang].profPhoneLbl;
+            document.getElementById('t-profGenderLbl').innerText = translations[lang].profGenderLbl;
+            document.getElementById('t-profGenderM').innerText = translations[lang].profGenderM;
+            document.getElementById('t-profGenderF').innerText = translations[lang].profGenderF;
+            document.getElementById('t-profDobLbl').innerText = translations[lang].profDobLbl;
+            document.getElementById('t-profDobDay').placeholder = translations[lang].profDobDay;
+            document.getElementById('t-profDobYear').placeholder = translations[lang].profDobYear;
+            document.getElementById('t-marketingTitle').innerText = translations[lang].marketingTitle;
+            document.getElementById('t-profSettingsTitle').innerText = translations[lang].profSettingsTitle;
+            document.getElementById('t-profSaveBtn').innerText = translations[lang].profSaveBtn;
+            document.getElementById('t-profChangeEmailBtn').innerText = translations[lang].profChangeEmailBtn;
+            document.getElementById('t-profChangePwdBtn').innerText = translations[lang].profChangePwdBtn;
+
+            // Обновляем текстовые узлы (Success Page)
+            document.getElementById('t-successTitle').innerText = translations[lang].successTitle;
+            document.getElementById('t-successDesc').innerText = translations[lang].successDesc;
+            document.getElementById('t-successBtn').innerText = translations[lang].successBtn;
+            document.getElementById('t-successHomeBtn').innerText = translations[lang].successHomeBtn;
         }
+
+        // Ініціалізація початкового стану (Показуємо відразу сторінку Профілю)
+        setLanguage('ru');
+        showPage('page-profile');
     </script>
 </body>
 </html>
