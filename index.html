@@ -118,7 +118,7 @@
                                     <input type="checkbox" class="custom-checkbox flex-shrink-0 peer">
                                 </div>
                                 <span class="text-[13px] text-gray-600 leading-snug select-none group-hover:text-gray-800 transition-colors">
-                                    <span id="t-marketingText1">Я хочу получать уведомления об акциях и персональных скидках в соответствии с </span><a href="#privacy" id="t-privacyLink1" class="text-gray-800 font-medium underline hover:text-[#ed1c24] transition-colors" onclick="event.stopPropagation()">Политикой приватности</a>.
+                                    <span id="t-marketingText1">Я хочу получать уведомления об акциях и персональных скидках в соответствии с </span><a href="#privacy" id="t-privacyLink1" class="text-gray-800 font-medium underline hover:text-[#ed1c24] transition-colors" onclick="event.stopPropagation()">Политикой конфиденциальности</a>.
                                 </span>
                             </label>
 
@@ -159,7 +159,7 @@
         </div>
 
         <!-- ========================================== -->
-        <!-- СТОРИНКА 2: ПРОФИЛЬ (Особисті дані) ОНОВЛЕНО -->
+        <!-- СТОРИНКА 2: ПРОФИЛЬ (Особисті дані) -->
         <!-- ========================================== -->
         <div id="page-profile" class="page-view w-full max-w-[1000px] p-6 sm:p-12 bg-white rounded-2xl shadow-sm relative fade-in">
             <h1 id="t-profTitle" class="text-[44px] font-bold text-gray-900 mb-10">Персональные данные</h1>
@@ -234,7 +234,7 @@
                         <div class="flex flex-col">
                             <span class="text-[15px] font-medium text-gray-900 mb-1" id="t-marketingTitle">Акции и выгодные предложения</span>
                             <span class="text-[14px] text-gray-500 leading-snug">
-                                <span id="t-marketingText2">Я хочу получать уведомления об акциях и персональных скидках в соответствии с </span><a href="#privacy" id="t-privacyLink2" class="text-gray-800 font-medium underline hover:text-[#ed1c24] transition-colors" onclick="event.stopPropagation()">Политикой приватности</a>.
+                                <span id="t-marketingText2">Я хочу получать уведомления об акциях и персональных скидках в соответствии с </span><a href="#privacy" id="t-privacyLink2" class="text-gray-800 font-medium underline hover:text-[#ed1c24] transition-colors" onclick="event.stopPropagation()">Политикой конфиденциальности</a>.
                             </span>
                         </div>
                     </label>
@@ -266,7 +266,7 @@
             <h1 id="t-successTitle" class="text-3xl font-bold text-gray-900 mb-4">Подписка оформлена!</h1>
             
             <p id="t-successDesc" class="text-gray-500 text-[15px] leading-relaxed mb-10">
-                Спасибо! Вы успешно подписались на наши маркетинговые рассылки. Теперь вы будете первыми узнавать о скидках и специальных предложениях. Управлять подпиской можно в личном кабинете.
+                Спасибо! Вы успешно подписались на акции и выгодные предложения. Теперь вы будете первыми узнавать о скидках. Управлять подпиской можно в личном кабинете.
             </p>
 
             <button onclick="showPage('page-profile')" id="t-successBtn" class="w-full bg-[#ed1c24] hover:bg-[#d11a20] text-white font-medium py-3.5 rounded-full transition-all shadow-sm hover:shadow-md text-[15px]">
@@ -314,7 +314,7 @@
                 termsText2: "и",
                 termsLink: "Условиями предоставления услуг Nova Poshta Shopping",
                 marketingText: "Я хочу получать уведомления об акциях и персональных скидках в соответствии с ",
-                privacyLink: "Политикой приватности",
+                privacyLink: "Политикой конфиденциальности",
                 submitBtn: "Зарегистрироваться",
                 socialTitle: "Или войдите через соцсети",
                 fbBtn: "Зарегистрироваться через Facebook",
@@ -456,7 +456,7 @@
             document.getElementById('t-successHomeBtn').innerText = translations[lang].successHomeBtn;
         }
 
-        // Ініціалізація початкового стану (Показуємо відразу сторінку Профілю)
+        // Ініціалізація початкового стану
         setLanguage('ru');
         showPage('page-profile');
     </script>
